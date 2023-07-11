@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Employee</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+			crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="#" >
+  <img src="/img/R.png" width="30" height="30" class="d-inline-block align-top" align = "left">  
+      Employee List
+  </a>
+  		<span sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></span>
+</nav>
+
+<div class="container">
+		<h2 class="mt-4">Add Employee</h2>
+		<hr>
+		<form th:action="@{/save-employee}" th:object="${employee}" method="POST">
+		
+	<input type="text" th:field="*{fullname}" placeholder="Enter Fullname" class="form-control col-4 mb-4" autofocus ="autofocus" required/>
+	<input type="text" th:field="*{email}" placeholder="Enter Email" class="form-control col-4 mb-4" required/>
+	<input type="text" th:field="*{field}" placeholder="Enter Field" class="form-control col-4 mb-4" required/>	
+	<button class="btn btn-info" type="submit">Save to the List</button>
+	<input type="hidden" th:field="*{id}">
+		</form>
+		<hr>
+		<a th:href="@{/}">Back to List</a>
+	</div>
+</body>
+</html>
